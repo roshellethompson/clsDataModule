@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://fldevez.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://fldevez.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://fldevez.org/">
+      <s:element name="SaveJournal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="journalDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="block_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="incidentCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="application" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveJournalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveJournalResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveJournalXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="journalDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="block_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IncidentCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Application" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveJournalXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveJournalXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SaveJournalSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveJournal" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveJournalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveJournalXML" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveJournalXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalHttpGetIn">
+    <wsdl:part name="customerID" type="s:string" />
+    <wsdl:part name="journalDate" type="s:string" />
+    <wsdl:part name="block_ID" type="s:string" />
+    <wsdl:part name="transactionID" type="s:string" />
+    <wsdl:part name="incidentCode" type="s:string" />
+    <wsdl:part name="application" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalXMLHttpGetIn">
+    <wsdl:part name="customerID" type="s:string" />
+    <wsdl:part name="journalDate" type="s:string" />
+    <wsdl:part name="block_ID" type="s:string" />
+    <wsdl:part name="transactionID" type="s:string" />
+    <wsdl:part name="IncidentCode" type="s:string" />
+    <wsdl:part name="Application" type="s:string" />
+    <wsdl:part name="Description" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalXMLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalHttpPostIn">
+    <wsdl:part name="customerID" type="s:string" />
+    <wsdl:part name="journalDate" type="s:string" />
+    <wsdl:part name="block_ID" type="s:string" />
+    <wsdl:part name="transactionID" type="s:string" />
+    <wsdl:part name="incidentCode" type="s:string" />
+    <wsdl:part name="application" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+    <wsdl:part name="amount" type="s:string" />
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalXMLHttpPostIn">
+    <wsdl:part name="customerID" type="s:string" />
+    <wsdl:part name="journalDate" type="s:string" />
+    <wsdl:part name="block_ID" type="s:string" />
+    <wsdl:part name="transactionID" type="s:string" />
+    <wsdl:part name="IncidentCode" type="s:string" />
+    <wsdl:part name="Application" type="s:string" />
+    <wsdl:part name="Description" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SaveJournalXMLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="JournalSoap">
+    <wsdl:operation name="SaveJournal">
+      <wsdl:input message="tns:SaveJournalSoapIn" />
+      <wsdl:output message="tns:SaveJournalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveJournalXML">
+      <wsdl:input message="tns:SaveJournalXMLSoapIn" />
+      <wsdl:output message="tns:SaveJournalXMLSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JournalHttpGet">
+    <wsdl:operation name="SaveJournal">
+      <wsdl:input message="tns:SaveJournalHttpGetIn" />
+      <wsdl:output message="tns:SaveJournalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveJournalXML">
+      <wsdl:input message="tns:SaveJournalXMLHttpGetIn" />
+      <wsdl:output message="tns:SaveJournalXMLHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JournalHttpPost">
+    <wsdl:operation name="SaveJournal">
+      <wsdl:input message="tns:SaveJournalHttpPostIn" />
+      <wsdl:output message="tns:SaveJournalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveJournalXML">
+      <wsdl:input message="tns:SaveJournalXMLHttpPostIn" />
+      <wsdl:output message="tns:SaveJournalXMLHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="JournalSoap" type="tns:JournalSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveJournal">
+      <soap:operation soapAction="http://fldevez.org/SaveJournal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveJournalXML">
+      <soap:operation soapAction="http://fldevez.org/SaveJournalXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JournalSoap12" type="tns:JournalSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveJournal">
+      <soap12:operation soapAction="http://fldevez.org/SaveJournal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveJournalXML">
+      <soap12:operation soapAction="http://fldevez.org/SaveJournalXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JournalHttpGet" type="tns:JournalHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="SaveJournal">
+      <http:operation location="/SaveJournal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveJournalXML">
+      <http:operation location="/SaveJournalXML" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JournalHttpPost" type="tns:JournalHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="SaveJournal">
+      <http:operation location="/SaveJournal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveJournalXML">
+      <http:operation location="/SaveJournalXML" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Journal">
+    <wsdl:port name="JournalSoap" binding="tns:JournalSoap">
+      <soap:address location="http://fldevez/webcardmanagement/Journal.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JournalSoap12" binding="tns:JournalSoap12">
+      <soap12:address location="http://fldevez/webcardmanagement/Journal.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JournalHttpGet" binding="tns:JournalHttpGet">
+      <http:address location="http://fldevez/webcardmanagement/Journal.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JournalHttpPost" binding="tns:JournalHttpPost">
+      <http:address location="http://fldevez/webcardmanagement/Journal.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

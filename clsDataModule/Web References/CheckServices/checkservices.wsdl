@@ -1,0 +1,2090 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://fldevez/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://fldevez/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://fldevez/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="AuthorizeCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iCustomerID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCheckGuaranteeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCheckApprovalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sBlockID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iTransactionNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCheckNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkAmount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="sOPCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iCardID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sProviderID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sOutput1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sOutput2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sOutput3" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC1" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRC2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC3" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizeCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthorizeCheckResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sOutput1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sOutput2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sOutput3" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC1" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRC2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC3" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizeBillPay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iCustomerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dAmount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="iCardID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sBlockID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iTransactionNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sOPCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRC2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC3" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dOutput1" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="dOutput2" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="dOutput3" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="iOutput4" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizeBillPayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthorizeBillPayResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRC2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC3" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dOutput1" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="dOutput2" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="dOutput3" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="iOutput4" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackoutLogEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iBackoutID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sKeyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sKeyValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sTable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDataBase" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iOperationCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackoutLogEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BackoutLogEventResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="iBackoutID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackoutProcess">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iBackoutID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC2" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BackoutProcessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BackoutProcessResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="iBackoutID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iRC2" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMakerID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sAcctNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRoutingNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCheckNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCompanyName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMakerIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMakerIDResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sAcctNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sRoutingNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCheckNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCompanyName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckReview">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CustomerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="blockID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="workstationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="routingNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checkAmount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSigned" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FingerMatch" type="s1:char" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCheckNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckReviewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckReviewResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckReviewXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CustomerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="blockID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="workstationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="routingNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checkAmount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSigned" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FingerMatch" type="s1:char" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCheckNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckReviewXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckReviewXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckReviewed">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CustomerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="blockID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="workstationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckReviewedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckReviewedResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckReviewedXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CustomerID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="blockID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="workstationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckReviewedXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckReviewedXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestHeavyMetalPrepaid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PhotoID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDOB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="NetCard" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="TranCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProviderID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="OutCardBal" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="OutAvailBal" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="barcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReceiptNo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="WorkstationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestHeavyMetalPrepaidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestHeavyMetalPrepaidResult" type="tns:ReturnCodes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnCodes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="info" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HeavyMetalPrePaid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SDcust" type="tns:CustomerPhotoIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="NetCard" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="TranCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProviderID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="OutCardBal" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="OutAvailBal" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="barcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReceiptNo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="WorkstationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CustomerPhotoIDs">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CustomerID" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NameF" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NameM" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NameL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NameS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressL1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressL2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DLNbr" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DLIssueDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DLExpDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Height" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Weight" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EyeColor" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HairColor" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DOB" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreateDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="IDTypeNo" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sex" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PhotoIDScan" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Anonymous" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Scan_ID" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IDError" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityObject" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:StructuralObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="EntityKey" type="tns:EntityKey" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="StructuralObject" abstract="true" />
+      <s:complexType name="EntityKey">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EntitySetName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntityContainerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntityKeyValues" type="tns:ArrayOfEntityKeyMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEntityKeyMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EntityKeyMember" nillable="true" type="tns:EntityKeyMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntityKeyMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HeavyMetalPrePaidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HeavyMetalPrePaidResult" type="tns:ReturnCodes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OLDHeavyMetalPrePaid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="NetCard" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="TranCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PhotoID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDOB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProviderID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="OutCardBal" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="OutAvailBal" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="barcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReceiptNo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RCCard" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="WorkstationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OLDHeavyMetalPrePaidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OLDHeavyMetalPrePaidResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestFoxPro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="arrTest" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="Test" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TestFoxProResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestFoxProResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Test" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserSalt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserSaltResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserSaltResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HMCustomerFlow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Pan" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="deviceID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HMCustomerFlowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HMCustomerFlowResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestHeavyMetalPositiveCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dob" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckAmount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="routingNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="acctNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checkNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checkDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SyTran" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PrintCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProviderID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iDeviceID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestHeavyMetalPositiveCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestHeavyMetalPositiveCheckResult" type="tns:ReturnCodes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HeavyMetalPositiveCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdCust" type="tns:CustomerPhotoIDs" />
+            <s:element minOccurs="0" maxOccurs="1" name="sdCheck" type="tns:Checks" />
+            <s:element minOccurs="0" maxOccurs="1" name="stype" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSyTran" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sPrintCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sProviderID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iDeviceID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Checks">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CheckID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActNbr" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MakerID" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Date" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CheckNbr" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Amount" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" nillable="true" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreateDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CreateUser" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModifiedDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="ModifiedUser" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LockDate" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="LockUser" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Transaction_ID" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Routing_Number" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CheckGuaranteeCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Check_Approval_Code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Block_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Check_Fee" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="Cashed_Date" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Cashed_Time" nillable="true" type="tns:TimeSpan" />
+              <s:element minOccurs="0" maxOccurs="1" name="Workstation_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PositiveCheckFlag" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PositiveCashedFlag" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrintCheck" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="NetCash" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="NetCard" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="NetCheck" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="MakerName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccountsReference" type="tns:EntityReferenceOfAccounts" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerReference" type="tns:EntityReferenceOfCustomer" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TimeSpan" />
+      <s:complexType name="EntityReferenceOfAccounts">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityReference" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RelatedEnd">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="EntityKey" type="tns:EntityKey" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RelatedEnd" abstract="true" />
+      <s:complexType name="EntityReferenceOfCustomer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityReference" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="HeavyMetalPositiveCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HeavyMetalPositiveCheckResult" type="tns:ReturnCodes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestHMRPreRegistration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="photoID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dob" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SSN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Test" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScanID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="WorkstationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestHMRPreRegistrationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestHMRPreRegistrationResult" type="tns:ReturnCodes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HMRPreRegistration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SDcust" type="tns:CustomerPhotoIDs" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TestSSN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TestMobileNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Test" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScanID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="WorkstationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HMRPreRegistrationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HMRPreRegistrationResult" type="tns:ReturnCodes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HMRHeavyMetalRegistration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="photoID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDob" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="eaddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="providerID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="deviceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TestSSN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TestMobileNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Test" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PAN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RCCard" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HMRHeavyMetalRegistrationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HMRHeavyMetalRegistrationResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="photoID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDob" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RCCard" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HeavyMetalCardInquiry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="photoID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dob" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="providerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="output1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="output2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RC1" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HeavyMetalCardInquiryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HeavyMetalCardInquiryResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="output1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="output2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RC1" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="test">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iCustId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="testResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="testResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPasswordHash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strPass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userSalt" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPasswordHashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPasswordHashResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CustomerID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="IDNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RoutingNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AcctNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CheckNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="netCheckAmt" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="WorkstationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC1" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC2" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC3" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerDataResult" type="tns:Checks" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC1" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC2" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RC3" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ReturnCodes" type="tns:ReturnCodes" />
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="char">
+        <s:restriction base="s:unsignedShort" />
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AuthorizeCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthorizeCheck" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthorizeCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeBillPaySoapIn">
+    <wsdl:part name="parameters" element="tns:AuthorizeBillPay" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeBillPaySoapOut">
+    <wsdl:part name="parameters" element="tns:AuthorizeBillPayResponse" />
+  </wsdl:message>
+  <wsdl:message name="BackoutLogEventSoapIn">
+    <wsdl:part name="parameters" element="tns:BackoutLogEvent" />
+  </wsdl:message>
+  <wsdl:message name="BackoutLogEventSoapOut">
+    <wsdl:part name="parameters" element="tns:BackoutLogEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="BackoutProcessSoapIn">
+    <wsdl:part name="parameters" element="tns:BackoutProcess" />
+  </wsdl:message>
+  <wsdl:message name="BackoutProcessSoapOut">
+    <wsdl:part name="parameters" element="tns:BackoutProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMakerIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMakerID" />
+  </wsdl:message>
+  <wsdl:message name="GetMakerIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMakerIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckReview" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckReviewXML" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckReviewXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckReviewed" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckReviewedResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckReviewedXML" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckReviewedXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPrepaidSoapIn">
+    <wsdl:part name="parameters" element="tns:TestHeavyMetalPrepaid" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPrepaidSoapOut">
+    <wsdl:part name="parameters" element="tns:TestHeavyMetalPrepaidResponse" />
+  </wsdl:message>
+  <wsdl:message name="HeavyMetalPrePaidSoapIn">
+    <wsdl:part name="parameters" element="tns:HeavyMetalPrePaid" />
+  </wsdl:message>
+  <wsdl:message name="HeavyMetalPrePaidSoapOut">
+    <wsdl:part name="parameters" element="tns:HeavyMetalPrePaidResponse" />
+  </wsdl:message>
+  <wsdl:message name="OLDHeavyMetalPrePaidSoapIn">
+    <wsdl:part name="parameters" element="tns:OLDHeavyMetalPrePaid" />
+  </wsdl:message>
+  <wsdl:message name="OLDHeavyMetalPrePaidSoapOut">
+    <wsdl:part name="parameters" element="tns:OLDHeavyMetalPrePaidResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestFoxProSoapIn">
+    <wsdl:part name="parameters" element="tns:TestFoxPro" />
+  </wsdl:message>
+  <wsdl:message name="TestFoxProSoapOut">
+    <wsdl:part name="parameters" element="tns:TestFoxProResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSaltSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserSalt" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSaltSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserSaltResponse" />
+  </wsdl:message>
+  <wsdl:message name="HMCustomerFlowSoapIn">
+    <wsdl:part name="parameters" element="tns:HMCustomerFlow" />
+  </wsdl:message>
+  <wsdl:message name="HMCustomerFlowSoapOut">
+    <wsdl:part name="parameters" element="tns:HMCustomerFlowResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPositiveCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:TestHeavyMetalPositiveCheck" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPositiveCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:TestHeavyMetalPositiveCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="HeavyMetalPositiveCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:HeavyMetalPositiveCheck" />
+  </wsdl:message>
+  <wsdl:message name="HeavyMetalPositiveCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:HeavyMetalPositiveCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestHMRPreRegistrationSoapIn">
+    <wsdl:part name="parameters" element="tns:TestHMRPreRegistration" />
+  </wsdl:message>
+  <wsdl:message name="TestHMRPreRegistrationSoapOut">
+    <wsdl:part name="parameters" element="tns:TestHMRPreRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="HMRPreRegistrationSoapIn">
+    <wsdl:part name="parameters" element="tns:HMRPreRegistration" />
+  </wsdl:message>
+  <wsdl:message name="HMRPreRegistrationSoapOut">
+    <wsdl:part name="parameters" element="tns:HMRPreRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="HMRHeavyMetalRegistrationSoapIn">
+    <wsdl:part name="parameters" element="tns:HMRHeavyMetalRegistration" />
+  </wsdl:message>
+  <wsdl:message name="HMRHeavyMetalRegistrationSoapOut">
+    <wsdl:part name="parameters" element="tns:HMRHeavyMetalRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="HeavyMetalCardInquirySoapIn">
+    <wsdl:part name="parameters" element="tns:HeavyMetalCardInquiry" />
+  </wsdl:message>
+  <wsdl:message name="HeavyMetalCardInquirySoapOut">
+    <wsdl:part name="parameters" element="tns:HeavyMetalCardInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="testSoapIn">
+    <wsdl:part name="parameters" element="tns:test" />
+  </wsdl:message>
+  <wsdl:message name="testSoapOut">
+    <wsdl:part name="parameters" element="tns:testResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordHashSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPasswordHash" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordHashSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPasswordHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerData" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewHttpGetIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="transactionNumber" type="s:string" />
+    <wsdl:part name="blockID" type="s:string" />
+    <wsdl:part name="workstationID" type="s:string" />
+    <wsdl:part name="routingNumber" type="s:string" />
+    <wsdl:part name="accountNumber" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="checkAmount" type="s:string" />
+    <wsdl:part name="checkDate" type="s:string" />
+    <wsdl:part name="CompanyName" type="s:string" />
+    <wsdl:part name="isSigned" type="s:string" />
+    <wsdl:part name="FingerMatch" type="s:string" />
+    <wsdl:part name="sCheckNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewXMLHttpGetIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="transactionNumber" type="s:string" />
+    <wsdl:part name="blockID" type="s:string" />
+    <wsdl:part name="workstationID" type="s:string" />
+    <wsdl:part name="routingNumber" type="s:string" />
+    <wsdl:part name="accountNumber" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="checkAmount" type="s:string" />
+    <wsdl:part name="checkDate" type="s:string" />
+    <wsdl:part name="CompanyName" type="s:string" />
+    <wsdl:part name="isSigned" type="s:string" />
+    <wsdl:part name="FingerMatch" type="s:string" />
+    <wsdl:part name="sCheckNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewXMLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedHttpGetIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="transactionNumber" type="s:string" />
+    <wsdl:part name="blockID" type="s:string" />
+    <wsdl:part name="workstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedXMLHttpGetIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="blockID" type="s:string" />
+    <wsdl:part name="transactionNumber" type="s:string" />
+    <wsdl:part name="workstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedXMLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPrepaidHttpGetIn">
+    <wsdl:part name="PhotoID" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="Country" type="s:string" />
+    <wsdl:part name="strDOB" type="s:string" />
+    <wsdl:part name="FName" type="s:string" />
+    <wsdl:part name="MName" type="s:string" />
+    <wsdl:part name="LName" type="s:string" />
+    <wsdl:part name="NetCard" type="s:string" />
+    <wsdl:part name="TranCode" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="OutCardBal" type="s:string" />
+    <wsdl:part name="OutAvailBal" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+    <wsdl:part name="ReceiptNo" type="s:string" />
+    <wsdl:part name="WorkstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPrepaidHttpGetOut">
+    <wsdl:part name="Body" element="tns:ReturnCodes" />
+  </wsdl:message>
+  <wsdl:message name="OLDHeavyMetalPrePaidHttpGetIn">
+    <wsdl:part name="NetCard" type="s:string" />
+    <wsdl:part name="TranCode" type="s:string" />
+    <wsdl:part name="PhotoID" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="strDOB" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="OutCardBal" type="s:string" />
+    <wsdl:part name="OutAvailBal" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+    <wsdl:part name="ReceiptNo" type="s:string" />
+    <wsdl:part name="FName" type="s:string" />
+    <wsdl:part name="MName" type="s:string" />
+    <wsdl:part name="LName" type="s:string" />
+    <wsdl:part name="RC" type="s:string" />
+    <wsdl:part name="RCCard" type="s:string" />
+    <wsdl:part name="WorkstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OLDHeavyMetalPrePaidHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSaltHttpGetIn">
+    <wsdl:part name="customerID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSaltHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="HMCustomerFlowHttpGetIn">
+    <wsdl:part name="Pan" type="s:string" />
+    <wsdl:part name="deviceID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HMCustomerFlowHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPositiveCheckHttpGetIn">
+    <wsdl:part name="IDNum" type="s:string" />
+    <wsdl:part name="dob" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="country" type="s:string" />
+    <wsdl:part name="CheckAmount" type="s:string" />
+    <wsdl:part name="routingNum" type="s:string" />
+    <wsdl:part name="acctNum" type="s:string" />
+    <wsdl:part name="checkNum" type="s:string" />
+    <wsdl:part name="checkDate" type="s:string" />
+    <wsdl:part name="Type" type="s:string" />
+    <wsdl:part name="SyTran" type="s:string" />
+    <wsdl:part name="PrintCode" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="iDeviceID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPositiveCheckHttpGetOut">
+    <wsdl:part name="Body" element="tns:ReturnCodes" />
+  </wsdl:message>
+  <wsdl:message name="TestHMRPreRegistrationHttpGetIn">
+    <wsdl:part name="Barcode" type="s:string" />
+    <wsdl:part name="photoID" type="s:string" />
+    <wsdl:part name="dob" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="middleName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="address1" type="s:string" />
+    <wsdl:part name="address2" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="country" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="EAddress" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="SSN" type="s:string" />
+    <wsdl:part name="Mobile" type="s:string" />
+    <wsdl:part name="Test" type="s:string" />
+    <wsdl:part name="ScanID" type="s:string" />
+    <wsdl:part name="WorkstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestHMRPreRegistrationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ReturnCodes" />
+  </wsdl:message>
+  <wsdl:message name="testHttpGetIn">
+    <wsdl:part name="iCustId" type="s:string" />
+    <wsdl:part name="message" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="testHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordHashHttpGetIn">
+    <wsdl:part name="strPass" type="s:string" />
+    <wsdl:part name="userSalt" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordHashHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewHttpPostIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="transactionNumber" type="s:string" />
+    <wsdl:part name="blockID" type="s:string" />
+    <wsdl:part name="workstationID" type="s:string" />
+    <wsdl:part name="routingNumber" type="s:string" />
+    <wsdl:part name="accountNumber" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="checkAmount" type="s:string" />
+    <wsdl:part name="checkDate" type="s:string" />
+    <wsdl:part name="CompanyName" type="s:string" />
+    <wsdl:part name="isSigned" type="s:string" />
+    <wsdl:part name="FingerMatch" type="s:string" />
+    <wsdl:part name="sCheckNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewXMLHttpPostIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="transactionNumber" type="s:string" />
+    <wsdl:part name="blockID" type="s:string" />
+    <wsdl:part name="workstationID" type="s:string" />
+    <wsdl:part name="routingNumber" type="s:string" />
+    <wsdl:part name="accountNumber" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="checkAmount" type="s:string" />
+    <wsdl:part name="checkDate" type="s:string" />
+    <wsdl:part name="CompanyName" type="s:string" />
+    <wsdl:part name="isSigned" type="s:string" />
+    <wsdl:part name="FingerMatch" type="s:string" />
+    <wsdl:part name="sCheckNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewXMLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedHttpPostIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="transactionNumber" type="s:string" />
+    <wsdl:part name="blockID" type="s:string" />
+    <wsdl:part name="workstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedXMLHttpPostIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="blockID" type="s:string" />
+    <wsdl:part name="transactionNumber" type="s:string" />
+    <wsdl:part name="workstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckReviewedXMLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPrepaidHttpPostIn">
+    <wsdl:part name="PhotoID" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="Country" type="s:string" />
+    <wsdl:part name="strDOB" type="s:string" />
+    <wsdl:part name="FName" type="s:string" />
+    <wsdl:part name="MName" type="s:string" />
+    <wsdl:part name="LName" type="s:string" />
+    <wsdl:part name="NetCard" type="s:string" />
+    <wsdl:part name="TranCode" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="OutCardBal" type="s:string" />
+    <wsdl:part name="OutAvailBal" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+    <wsdl:part name="ReceiptNo" type="s:string" />
+    <wsdl:part name="WorkstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPrepaidHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnCodes" />
+  </wsdl:message>
+  <wsdl:message name="OLDHeavyMetalPrePaidHttpPostIn">
+    <wsdl:part name="NetCard" type="s:string" />
+    <wsdl:part name="TranCode" type="s:string" />
+    <wsdl:part name="PhotoID" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+    <wsdl:part name="strDOB" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="OutCardBal" type="s:string" />
+    <wsdl:part name="OutAvailBal" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+    <wsdl:part name="ReceiptNo" type="s:string" />
+    <wsdl:part name="FName" type="s:string" />
+    <wsdl:part name="MName" type="s:string" />
+    <wsdl:part name="LName" type="s:string" />
+    <wsdl:part name="RC" type="s:string" />
+    <wsdl:part name="RCCard" type="s:string" />
+    <wsdl:part name="WorkstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OLDHeavyMetalPrePaidHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSaltHttpPostIn">
+    <wsdl:part name="customerID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSaltHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="HMCustomerFlowHttpPostIn">
+    <wsdl:part name="Pan" type="s:string" />
+    <wsdl:part name="deviceID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HMCustomerFlowHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPositiveCheckHttpPostIn">
+    <wsdl:part name="IDNum" type="s:string" />
+    <wsdl:part name="dob" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="country" type="s:string" />
+    <wsdl:part name="CheckAmount" type="s:string" />
+    <wsdl:part name="routingNum" type="s:string" />
+    <wsdl:part name="acctNum" type="s:string" />
+    <wsdl:part name="checkNum" type="s:string" />
+    <wsdl:part name="checkDate" type="s:string" />
+    <wsdl:part name="Type" type="s:string" />
+    <wsdl:part name="SyTran" type="s:string" />
+    <wsdl:part name="PrintCode" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="iDeviceID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestHeavyMetalPositiveCheckHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnCodes" />
+  </wsdl:message>
+  <wsdl:message name="TestHMRPreRegistrationHttpPostIn">
+    <wsdl:part name="Barcode" type="s:string" />
+    <wsdl:part name="photoID" type="s:string" />
+    <wsdl:part name="dob" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="middleName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="address1" type="s:string" />
+    <wsdl:part name="address2" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="country" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+    <wsdl:part name="EAddress" type="s:string" />
+    <wsdl:part name="ProviderID" type="s:string" />
+    <wsdl:part name="SSN" type="s:string" />
+    <wsdl:part name="Mobile" type="s:string" />
+    <wsdl:part name="Test" type="s:string" />
+    <wsdl:part name="ScanID" type="s:string" />
+    <wsdl:part name="WorkstationID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestHMRPreRegistrationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnCodes" />
+  </wsdl:message>
+  <wsdl:message name="testHttpPostIn">
+    <wsdl:part name="iCustId" type="s:string" />
+    <wsdl:part name="message" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="testHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordHashHttpPostIn">
+    <wsdl:part name="strPass" type="s:string" />
+    <wsdl:part name="userSalt" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordHashHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="CheckServicesSoap">
+    <wsdl:operation name="AuthorizeCheck">
+      <wsdl:input message="tns:AuthorizeCheckSoapIn" />
+      <wsdl:output message="tns:AuthorizeCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeBillPay">
+      <wsdl:input message="tns:AuthorizeBillPaySoapIn" />
+      <wsdl:output message="tns:AuthorizeBillPaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackoutLogEvent">
+      <wsdl:input message="tns:BackoutLogEventSoapIn" />
+      <wsdl:output message="tns:BackoutLogEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BackoutProcess">
+      <wsdl:input message="tns:BackoutProcessSoapIn" />
+      <wsdl:output message="tns:BackoutProcessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMakerID">
+      <wsdl:input message="tns:GetMakerIDSoapIn" />
+      <wsdl:output message="tns:GetMakerIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReview">
+      <wsdl:input message="tns:CheckReviewSoapIn" />
+      <wsdl:output message="tns:CheckReviewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewXML">
+      <wsdl:input message="tns:CheckReviewXMLSoapIn" />
+      <wsdl:output message="tns:CheckReviewXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewed">
+      <wsdl:input message="tns:CheckReviewedSoapIn" />
+      <wsdl:output message="tns:CheckReviewedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewedXML">
+      <wsdl:input message="tns:CheckReviewedXMLSoapIn" />
+      <wsdl:output message="tns:CheckReviewedXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPrepaid">
+      <wsdl:input message="tns:TestHeavyMetalPrepaidSoapIn" />
+      <wsdl:output message="tns:TestHeavyMetalPrepaidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalPrePaid">
+      <wsdl:input message="tns:HeavyMetalPrePaidSoapIn" />
+      <wsdl:output message="tns:HeavyMetalPrePaidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OLDHeavyMetalPrePaid">
+      <wsdl:input message="tns:OLDHeavyMetalPrePaidSoapIn" />
+      <wsdl:output message="tns:OLDHeavyMetalPrePaidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestFoxPro">
+      <wsdl:input message="tns:TestFoxProSoapIn" />
+      <wsdl:output message="tns:TestFoxProSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSalt">
+      <wsdl:input message="tns:UpdateUserSaltSoapIn" />
+      <wsdl:output message="tns:UpdateUserSaltSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HMCustomerFlow">
+      <wsdl:input message="tns:HMCustomerFlowSoapIn" />
+      <wsdl:output message="tns:HMCustomerFlowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPositiveCheck">
+      <wsdl:input message="tns:TestHeavyMetalPositiveCheckSoapIn" />
+      <wsdl:output message="tns:TestHeavyMetalPositiveCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalPositiveCheck">
+      <wsdl:input message="tns:HeavyMetalPositiveCheckSoapIn" />
+      <wsdl:output message="tns:HeavyMetalPositiveCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHMRPreRegistration">
+      <wsdl:input message="tns:TestHMRPreRegistrationSoapIn" />
+      <wsdl:output message="tns:TestHMRPreRegistrationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HMRPreRegistration">
+      <wsdl:input message="tns:HMRPreRegistrationSoapIn" />
+      <wsdl:output message="tns:HMRPreRegistrationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HMRHeavyMetalRegistration">
+      <wsdl:input message="tns:HMRHeavyMetalRegistrationSoapIn" />
+      <wsdl:output message="tns:HMRHeavyMetalRegistrationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalCardInquiry">
+      <wsdl:input message="tns:HeavyMetalCardInquirySoapIn" />
+      <wsdl:output message="tns:HeavyMetalCardInquirySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <wsdl:input message="tns:testSoapIn" />
+      <wsdl:output message="tns:testSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordHash">
+      <wsdl:input message="tns:GetPasswordHashSoapIn" />
+      <wsdl:output message="tns:GetPasswordHashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerData">
+      <wsdl:input message="tns:GetCustomerDataSoapIn" />
+      <wsdl:output message="tns:GetCustomerDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CheckServicesHttpGet">
+    <wsdl:operation name="CheckReview">
+      <wsdl:input message="tns:CheckReviewHttpGetIn" />
+      <wsdl:output message="tns:CheckReviewHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewXML">
+      <wsdl:input message="tns:CheckReviewXMLHttpGetIn" />
+      <wsdl:output message="tns:CheckReviewXMLHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewed">
+      <wsdl:input message="tns:CheckReviewedHttpGetIn" />
+      <wsdl:output message="tns:CheckReviewedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewedXML">
+      <wsdl:input message="tns:CheckReviewedXMLHttpGetIn" />
+      <wsdl:output message="tns:CheckReviewedXMLHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPrepaid">
+      <wsdl:input message="tns:TestHeavyMetalPrepaidHttpGetIn" />
+      <wsdl:output message="tns:TestHeavyMetalPrepaidHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OLDHeavyMetalPrePaid">
+      <wsdl:input message="tns:OLDHeavyMetalPrePaidHttpGetIn" />
+      <wsdl:output message="tns:OLDHeavyMetalPrePaidHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSalt">
+      <wsdl:input message="tns:UpdateUserSaltHttpGetIn" />
+      <wsdl:output message="tns:UpdateUserSaltHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HMCustomerFlow">
+      <wsdl:input message="tns:HMCustomerFlowHttpGetIn" />
+      <wsdl:output message="tns:HMCustomerFlowHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPositiveCheck">
+      <wsdl:input message="tns:TestHeavyMetalPositiveCheckHttpGetIn" />
+      <wsdl:output message="tns:TestHeavyMetalPositiveCheckHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHMRPreRegistration">
+      <wsdl:input message="tns:TestHMRPreRegistrationHttpGetIn" />
+      <wsdl:output message="tns:TestHMRPreRegistrationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <wsdl:input message="tns:testHttpGetIn" />
+      <wsdl:output message="tns:testHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordHash">
+      <wsdl:input message="tns:GetPasswordHashHttpGetIn" />
+      <wsdl:output message="tns:GetPasswordHashHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CheckServicesHttpPost">
+    <wsdl:operation name="CheckReview">
+      <wsdl:input message="tns:CheckReviewHttpPostIn" />
+      <wsdl:output message="tns:CheckReviewHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewXML">
+      <wsdl:input message="tns:CheckReviewXMLHttpPostIn" />
+      <wsdl:output message="tns:CheckReviewXMLHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewed">
+      <wsdl:input message="tns:CheckReviewedHttpPostIn" />
+      <wsdl:output message="tns:CheckReviewedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewedXML">
+      <wsdl:input message="tns:CheckReviewedXMLHttpPostIn" />
+      <wsdl:output message="tns:CheckReviewedXMLHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPrepaid">
+      <wsdl:input message="tns:TestHeavyMetalPrepaidHttpPostIn" />
+      <wsdl:output message="tns:TestHeavyMetalPrepaidHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OLDHeavyMetalPrePaid">
+      <wsdl:input message="tns:OLDHeavyMetalPrePaidHttpPostIn" />
+      <wsdl:output message="tns:OLDHeavyMetalPrePaidHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSalt">
+      <wsdl:input message="tns:UpdateUserSaltHttpPostIn" />
+      <wsdl:output message="tns:UpdateUserSaltHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HMCustomerFlow">
+      <wsdl:input message="tns:HMCustomerFlowHttpPostIn" />
+      <wsdl:output message="tns:HMCustomerFlowHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPositiveCheck">
+      <wsdl:input message="tns:TestHeavyMetalPositiveCheckHttpPostIn" />
+      <wsdl:output message="tns:TestHeavyMetalPositiveCheckHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestHMRPreRegistration">
+      <wsdl:input message="tns:TestHMRPreRegistrationHttpPostIn" />
+      <wsdl:output message="tns:TestHMRPreRegistrationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <wsdl:input message="tns:testHttpPostIn" />
+      <wsdl:output message="tns:testHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordHash">
+      <wsdl:input message="tns:GetPasswordHashHttpPostIn" />
+      <wsdl:output message="tns:GetPasswordHashHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CheckServicesSoap" type="tns:CheckServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthorizeCheck">
+      <soap:operation soapAction="http://fldevez/AuthorizeCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeBillPay">
+      <soap:operation soapAction="http://fldevez/AuthorizeBillPay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackoutLogEvent">
+      <soap:operation soapAction="http://fldevez/BackoutLogEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackoutProcess">
+      <soap:operation soapAction="http://fldevez/BackoutProcess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMakerID">
+      <soap:operation soapAction="http://fldevez/GetMakerID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReview">
+      <soap:operation soapAction="http://fldevez/CheckReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewXML">
+      <soap:operation soapAction="http://fldevez/CheckReviewXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewed">
+      <soap:operation soapAction="http://fldevez/CheckReviewed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewedXML">
+      <soap:operation soapAction="http://fldevez/CheckReviewedXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPrepaid">
+      <soap:operation soapAction="http://fldevez/TestHeavyMetalPrepaid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalPrePaid">
+      <soap:operation soapAction="http://fldevez/HeavyMetalPrePaid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OLDHeavyMetalPrePaid">
+      <soap:operation soapAction="http://fldevez/OLDHeavyMetalPrePaid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestFoxPro">
+      <soap:operation soapAction="http://fldevez/TestFoxPro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSalt">
+      <soap:operation soapAction="http://fldevez/UpdateUserSalt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMCustomerFlow">
+      <soap:operation soapAction="http://fldevez/HMCustomerFlow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPositiveCheck">
+      <soap:operation soapAction="http://fldevez/TestHeavyMetalPositiveCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalPositiveCheck">
+      <soap:operation soapAction="http://fldevez/HeavyMetalPositiveCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHMRPreRegistration">
+      <soap:operation soapAction="http://fldevez/TestHMRPreRegistration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMRPreRegistration">
+      <soap:operation soapAction="http://fldevez/HMRPreRegistration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMRHeavyMetalRegistration">
+      <soap:operation soapAction="http://fldevez/HMRHeavyMetalRegistration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalCardInquiry">
+      <soap:operation soapAction="http://fldevez/HeavyMetalCardInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <soap:operation soapAction="http://fldevez/test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordHash">
+      <soap:operation soapAction="http://fldevez/GetPasswordHash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerData">
+      <soap:operation soapAction="http://fldevez/GetCustomerData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CheckServicesSoap12" type="tns:CheckServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthorizeCheck">
+      <soap12:operation soapAction="http://fldevez/AuthorizeCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeBillPay">
+      <soap12:operation soapAction="http://fldevez/AuthorizeBillPay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackoutLogEvent">
+      <soap12:operation soapAction="http://fldevez/BackoutLogEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackoutProcess">
+      <soap12:operation soapAction="http://fldevez/BackoutProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMakerID">
+      <soap12:operation soapAction="http://fldevez/GetMakerID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReview">
+      <soap12:operation soapAction="http://fldevez/CheckReview" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewXML">
+      <soap12:operation soapAction="http://fldevez/CheckReviewXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewed">
+      <soap12:operation soapAction="http://fldevez/CheckReviewed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewedXML">
+      <soap12:operation soapAction="http://fldevez/CheckReviewedXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPrepaid">
+      <soap12:operation soapAction="http://fldevez/TestHeavyMetalPrepaid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalPrePaid">
+      <soap12:operation soapAction="http://fldevez/HeavyMetalPrePaid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OLDHeavyMetalPrePaid">
+      <soap12:operation soapAction="http://fldevez/OLDHeavyMetalPrePaid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestFoxPro">
+      <soap12:operation soapAction="http://fldevez/TestFoxPro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSalt">
+      <soap12:operation soapAction="http://fldevez/UpdateUserSalt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMCustomerFlow">
+      <soap12:operation soapAction="http://fldevez/HMCustomerFlow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPositiveCheck">
+      <soap12:operation soapAction="http://fldevez/TestHeavyMetalPositiveCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalPositiveCheck">
+      <soap12:operation soapAction="http://fldevez/HeavyMetalPositiveCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHMRPreRegistration">
+      <soap12:operation soapAction="http://fldevez/TestHMRPreRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMRPreRegistration">
+      <soap12:operation soapAction="http://fldevez/HMRPreRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMRHeavyMetalRegistration">
+      <soap12:operation soapAction="http://fldevez/HMRHeavyMetalRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeavyMetalCardInquiry">
+      <soap12:operation soapAction="http://fldevez/HeavyMetalCardInquiry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <soap12:operation soapAction="http://fldevez/test" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordHash">
+      <soap12:operation soapAction="http://fldevez/GetPasswordHash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerData">
+      <soap12:operation soapAction="http://fldevez/GetCustomerData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CheckServicesHttpGet" type="tns:CheckServicesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CheckReview">
+      <http:operation location="/CheckReview" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewXML">
+      <http:operation location="/CheckReviewXML" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewed">
+      <http:operation location="/CheckReviewed" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewedXML">
+      <http:operation location="/CheckReviewedXML" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPrepaid">
+      <http:operation location="/TestHeavyMetalPrepaid" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OLDHeavyMetalPrePaid">
+      <http:operation location="/OLDHeavyMetalPrePaid" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSalt">
+      <http:operation location="/UpdateUserSalt" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMCustomerFlow">
+      <http:operation location="/HMCustomerFlow" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPositiveCheck">
+      <http:operation location="/TestHeavyMetalPositiveCheck" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHMRPreRegistration">
+      <http:operation location="/TestHMRPreRegistration" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <http:operation location="/test" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordHash">
+      <http:operation location="/GetPasswordHash" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CheckServicesHttpPost" type="tns:CheckServicesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CheckReview">
+      <http:operation location="/CheckReview" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewXML">
+      <http:operation location="/CheckReviewXML" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewed">
+      <http:operation location="/CheckReviewed" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckReviewedXML">
+      <http:operation location="/CheckReviewedXML" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPrepaid">
+      <http:operation location="/TestHeavyMetalPrepaid" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OLDHeavyMetalPrePaid">
+      <http:operation location="/OLDHeavyMetalPrePaid" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSalt">
+      <http:operation location="/UpdateUserSalt" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMCustomerFlow">
+      <http:operation location="/HMCustomerFlow" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHeavyMetalPositiveCheck">
+      <http:operation location="/TestHeavyMetalPositiveCheck" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestHMRPreRegistration">
+      <http:operation location="/TestHMRPreRegistration" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <http:operation location="/test" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordHash">
+      <http:operation location="/GetPasswordHash" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CheckServices">
+    <wsdl:port name="CheckServicesSoap" binding="tns:CheckServicesSoap">
+      <soap:address location="http://www.personalfinancesystem.com/webcardmanagement/checkservices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CheckServicesSoap12" binding="tns:CheckServicesSoap12">
+      <soap12:address location="http://www.personalfinancesystem.com/webcardmanagement/checkservices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CheckServicesHttpGet" binding="tns:CheckServicesHttpGet">
+      <http:address location="http://www.personalfinancesystem.com/webcardmanagement/checkservices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CheckServicesHttpPost" binding="tns:CheckServicesHttpPost">
+      <http:address location="http://www.personalfinancesystem.com/webcardmanagement/checkservices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

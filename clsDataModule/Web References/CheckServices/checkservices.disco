@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://www.personalfinancesystem.com/webcardmanagement/checkservices.asmx?wsdl" docRef="http://www.personalfinancesystem.com/webcardmanagement/checkservices.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://www.personalfinancesystem.com/webcardmanagement/checkservices.asmx" xmlns:q1="http://fldevez/" binding="q1:CheckServicesSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://www.personalfinancesystem.com/webcardmanagement/checkservices.asmx" xmlns:q2="http://fldevez/" binding="q2:CheckServicesSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

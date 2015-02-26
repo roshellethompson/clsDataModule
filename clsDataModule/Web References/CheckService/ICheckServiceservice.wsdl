@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="urn:EZCWSIntf" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="urn:CheckServiceIntf" name="ICheckServiceservice" targetNamespace="http://tempuri.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:CheckServiceIntf">
+      <xs:complexType name="TCheckAuthorization">
+        <xs:sequence>
+          <xs:element name="Barcode" type="xs:string" />
+          <xs:element name="ReturnCode" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCustInfo">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int" />
+          <xs:element name="ParentCustomerID" type="xs:int" />
+          <xs:element name="user_name" type="xs:string" />
+          <xs:element name="NameF" type="xs:string" />
+          <xs:element name="NameL" type="xs:string" />
+          <xs:element name="CustomerID" type="xs:int" />
+          <xs:element name="Active" type="xs:boolean" />
+          <xs:element name="CreateDate" type="xs:dateTime" />
+          <xs:element name="CreateUser" type="xs:string" />
+          <xs:element name="ModifiedDate" type="xs:dateTime" />
+          <xs:element name="ModifiedUser" type="xs:string" />
+          <xs:element name="LockDate" type="xs:dateTime" />
+          <xs:element name="LockUser" type="xs:string" />
+          <xs:element name="LangIDPref" type="xs:int" />
+          <xs:element name="DLNbr" type="xs:string" />
+          <xs:element name="SSN" type="xs:string" />
+          <xs:element name="DOB" type="xs:dateTime" />
+          <xs:element name="Track2Data" type="xs:string" />
+          <xs:element name="ObjectCount" type="xs:int" />
+          <xs:element name="Objects" type="ns2:TObjectArray" />
+          <xs:element name="ReturnCode" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TObjName">
+        <xs:sequence>
+          <xs:element name="ObjectName" type="xs:string" />
+          <xs:element name="ObjectText" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TLangResult">
+        <xs:sequence>
+          <xs:element name="ObjectCount" type="xs:int" />
+          <xs:element name="Objects" type="ns2:TObjectArray" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TStringArray">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:EZCWSIntf">
+      <xs:complexType name="TObjectArray">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TObjName[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="AuthorizeCheck0Request">
+    <part name="CustomerID" type="xs:int" />
+    <part name="TranNbr" type="xs:int" />
+    <part name="BlockID" type="xs:int" />
+    <part name="ReasonCode" type="xs:int" />
+    <part name="AuthCode" type="xs:int" />
+  </message>
+  <message name="AuthorizeCheck0Response">
+    <part name="return" type="ns1:TCheckAuthorization" />
+  </message>
+  <message name="CreateCustomerID1Request">
+    <part name="SSN" type="xs:string" />
+    <part name="PhotoIDNo" type="xs:int" />
+    <part name="Fname" type="xs:string" />
+    <part name="LastName" type="xs:string" />
+    <part name="LangCode" type="xs:string" />
+  </message>
+  <message name="CreateCustomerID1Response">
+    <part name="return" type="ns1:TCustInfo" />
+  </message>
+  <message name="CreateTransactionNumber2Request">
+    <part name="CustomerID" type="xs:int" />
+    <part name="TranType" type="xs:int" />
+  </message>
+  <message name="CreateTransactionNumber2Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="SaveCustomerData3Request">
+    <part name="CustomerID" type="xs:int" />
+    <part name="PhotoIDNbr" type="xs:int" />
+    <part name="Fname" type="xs:string" />
+    <part name="LName" type="xs:string" />
+    <part name="SSN" type="xs:string" />
+    <part name="State" type="xs:string" />
+    <part name="Address" type="xs:string" />
+    <part name="CustomerPhoneNbr" type="xs:string" />
+    <part name="DOB" type="xs:dateTime" />
+  </message>
+  <message name="SaveCustomerData3Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="SaveJournalData4Request">
+    <part name="CustomerID" type="xs:int" />
+    <part name="TranNbr" type="xs:int" />
+    <part name="EvtCde" type="xs:int" />
+    <part name="JournalData" type="xs:string" />
+  </message>
+  <message name="SaveJournalData4Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="GetLanguageArray5Request">
+    <part name="LangID" type="xs:int" />
+  </message>
+  <message name="GetLanguageArray5Response">
+    <part name="return" type="ns1:TLangResult" />
+  </message>
+  <message name="GetLanguageArrayStr6Request">
+    <part name="LangID" type="xs:int" />
+  </message>
+  <message name="GetLanguageArrayStr6Response">
+    <part name="return" type="ns1:TStringArray" />
+  </message>
+  <message name="CaptureRegIDData7Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="TranType" type="xs:string" />
+    <part name="PAN" type="xs:string" />
+    <part name="ScanID" type="xs:int" />
+  </message>
+  <message name="CaptureRegIDData7Response">
+    <part name="ScanID" type="xs:int" />
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="CaptureRegIDImage8Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="ScanID" type="xs:int" />
+  </message>
+  <message name="CaptureRegIDImage8Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="CaptureRegIDDataAndImg9Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="TranType" type="xs:string" />
+    <part name="PAN" type="xs:string" />
+    <part name="ScanID" type="xs:int" />
+  </message>
+  <message name="CaptureRegIDDataAndImg9Response">
+    <part name="ScanID" type="xs:int" />
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="CaptureRegCustImage10Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="ScanID" type="xs:int" />
+  </message>
+  <message name="CaptureRegCustImage10Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="PostAndCheckEZCashQ11Request">
+    <part name="QueueID" type="xs:int" />
+    <part name="ProviderID" type="xs:string" />
+    <part name="WorkstationID" type="xs:int" />
+    <part name="CustomerID" type="xs:int" />
+    <part name="QueueCode" type="xs:string" />
+    <part name="StatusCode" type="xs:string" />
+    <part name="Data1" type="xs:string" />
+    <part name="Data2" type="xs:string" />
+    <part name="Data3" type="xs:string" />
+    <part name="Data4" type="xs:string" />
+    <part name="Data5" type="xs:string" />
+    <part name="Data6" type="xs:string" />
+    <part name="RC1" type="xs:string" />
+    <part name="RC2" type="xs:string" />
+    <part name="RC3" type="xs:string" />
+    <part name="RC4" type="xs:string" />
+    <part name="TimeoutSec" type="xs:int" />
+  </message>
+  <message name="PostAndCheckEZCashQ11Response">
+    <part name="QueueID" type="xs:int" />
+    <part name="WorkstationID" type="xs:int" />
+    <part name="CustomerID" type="xs:int" />
+    <part name="QueueCode" type="xs:string" />
+    <part name="StatusCode" type="xs:string" />
+    <part name="Data1" type="xs:string" />
+    <part name="Data2" type="xs:string" />
+    <part name="Data3" type="xs:string" />
+    <part name="Data4" type="xs:string" />
+    <part name="Data5" type="xs:string" />
+    <part name="Data6" type="xs:string" />
+    <part name="RC1" type="xs:string" />
+    <part name="RC2" type="xs:string" />
+    <part name="RC3" type="xs:string" />
+    <part name="RC4" type="xs:string" />
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="CopyImage12Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="ScanID" type="xs:int" />
+    <part name="CustID" type="xs:int" />
+    <part name="PhotoIDID" type="xs:int" />
+  </message>
+  <message name="CopyImage12Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="CaptureCustImage13Request">
+    <part name="CustomerID" type="xs:int" />
+    <part name="BlockID" type="xs:int" />
+    <part name="WorkstationID" type="xs:int" />
+  </message>
+  <message name="CaptureCustImage13Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="CaptureCustIDImage14Request">
+    <part name="CustomerID" type="xs:int" />
+    <part name="BlockID" type="xs:int" />
+    <part name="WorkstationID" type="xs:int" />
+  </message>
+  <message name="CaptureCustIDImage14Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="CaptureCustTxnImage15Request">
+    <part name="CustomerID" type="xs:int" />
+    <part name="TranID" type="xs:int" />
+    <part name="WorkstationID" type="xs:int" />
+  </message>
+  <message name="CaptureCustTxnImage15Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="GetBarcode16Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="ReceiptNbr" type="xs:int" />
+    <part name="ProviderID" type="xs:string" />
+    <part name="NetCash" type="xs:double" />
+    <part name="Barcode" type="xs:string" />
+    <part name="ErrorDesc" type="xs:string" />
+  </message>
+  <message name="GetBarcode16Response">
+    <part name="Barcode" type="xs:string" />
+    <part name="ErrorDesc" type="xs:string" />
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="GetFee17Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="CustomerID" type="xs:int" />
+    <part name="Amount" type="xs:double" />
+    <part name="TranType" type="xs:string" />
+    <part name="ProcessorID" type="xs:int" />
+    <part name="Fee" type="xs:double" />
+    <part name="RC1" type="xs:string" />
+    <part name="RC2" type="xs:string" />
+    <part name="DevID" type="xs:int" />
+    <part name="CardID" type="xs:int" />
+  </message>
+  <message name="GetFee17Response">
+    <part name="Fee" type="xs:double" />
+    <part name="RC1" type="xs:string" />
+    <part name="RC2" type="xs:string" />
+  </message>
+  <message name="IsCustomer18Request">
+    <part name="IDNbr" type="xs:string" />
+    <part name="DOB" type="xs:string" />
+    <part name="State" type="xs:string" />
+    <part name="Fname" type="xs:string" />
+    <part name="LName" type="xs:string" />
+    <part name="RC1" type="xs:int" />
+  </message>
+  <message name="IsCustomer18Response">
+    <part name="Fname" type="xs:string" />
+    <part name="LName" type="xs:string" />
+    <part name="RC1" type="xs:int" />
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="LoadEquinoxScreen19Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="LanguageID" type="xs:int" />
+    <part name="TemplateID" type="xs:string" />
+    <part name="PINflag" type="xs:int" />
+    <part name="WaitForInput" type="xs:int" />
+    <part name="TimeoutSec" type="xs:int" />
+    <part name="ReturnToIdleSec" type="xs:int" />
+    <part name="PAN" type="xs:string" />
+    <part name="Info" type="ns1:TStringArray" />
+    <part name="PIN" type="xs:string" />
+    <part name="KSN" type="xs:string" />
+    <part name="UserInput" type="xs:string" />
+    <part name="ButtonPressed" type="xs:string" />
+  </message>
+  <message name="LoadEquinoxScreen19Response">
+    <part name="PIN" type="xs:string" />
+    <part name="KSN" type="xs:string" />
+    <part name="UserInput" type="xs:string" />
+    <part name="ButtonPressed" type="xs:string" />
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="CheckScannerCmd20Request">
+    <part name="Command" type="xs:string" />
+    <part name="MICR" type="xs:string" />
+    <part name="WorkstationID" type="xs:int" />
+    <part name="TranID" type="xs:int" />
+    <part name="CustID" type="xs:int" />
+  </message>
+  <message name="CheckScannerCmd20Response">
+    <part name="MICR" type="xs:string" />
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="ScanBillStub21Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="BillPayReviewID" type="xs:int" />
+    <part name="CustID" type="xs:int" />
+  </message>
+  <message name="ScanBillStub21Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="NCRCheckReview22Request">
+    <part name="PAN" type="xs:string" />
+    <part name="FrontImageJPG" type="xs:base64Binary" />
+    <part name="BackImageJPG" type="xs:base64Binary" />
+    <part name="RTN" type="xs:string" />
+    <part name="AcctNbr" type="xs:string" />
+    <part name="CheckNbr" type="xs:string" />
+    <part name="Amount" type="xs:string" />
+    <part name="Date" type="xs:string" />
+    <part name="TerminateFlag" type="xs:int" />
+    <part name="MakerPhoneFlag" type="xs:int" />
+    <part name="CheckSignedFlag" type="xs:int" />
+    <part name="AvailBal" type="xs:double" />
+    <part name="CardBal" type="xs:double" />
+    <part name="Fee" type="xs:double" />
+    <part name="RequestID" type="xs:int" />
+  </message>
+  <message name="NCRCheckReview22Response">
+    <part name="TerminateFlag" type="xs:int" />
+    <part name="MakerPhoneFlag" type="xs:int" />
+    <part name="CheckSignedFlag" type="xs:int" />
+    <part name="AvailBal" type="xs:double" />
+    <part name="CardBal" type="xs:double" />
+    <part name="Fee" type="xs:double" />
+    <part name="RequestID" type="xs:int" />
+  </message>
+  <message name="NCRCheckVerification23Request">
+    <part name="MakerPhone" type="xs:string" />
+    <part name="CheckOK" type="xs:string" />
+    <part name="AvailBal" type="xs:double" />
+    <part name="CardBal" type="xs:double" />
+    <part name="CashOnly" type="xs:int" />
+    <part name="RequestID" type="xs:int" />
+    <part name="MobilePhone" type="xs:string" />
+  </message>
+  <message name="NCRCheckVerification23Response">
+    <part name="CheckOK" type="xs:string" />
+    <part name="AvailBal" type="xs:double" />
+    <part name="CardBal" type="xs:double" />
+    <part name="CashOnly" type="xs:int" />
+    <part name="RequestID" type="xs:int" />
+    <part name="MobilePhone" type="xs:string" />
+  </message>
+  <message name="LogBackoutEvent24Request">
+    <part name="BackoutID" type="xs:int" />
+    <part name="KeyName" type="xs:string" />
+    <part name="KeyValue" type="xs:string" />
+    <part name="Tablename" type="xs:string" />
+    <part name="FieldName" type="xs:string" />
+    <part name="Database" type="xs:string" />
+    <part name="Operation" type="xs:int" />
+  </message>
+  <message name="LogBackoutEvent24Response">
+    <part name="BackoutID" type="xs:int" />
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="ProcessBackoutEvents25Request">
+    <part name="BackoutID" type="xs:int" />
+  </message>
+  <message name="ProcessBackoutEvents25Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="Trace26Request">
+    <part name="Msg" type="xs:string" />
+  </message>
+  <message name="Trace26Response" />
+  <message name="ParseMICR27Request">
+    <part name="MICR" type="xs:string" />
+    <part name="CheckNbr" type="xs:string" />
+    <part name="RTN" type="xs:string" />
+    <part name="AcctNbr" type="xs:string" />
+  </message>
+  <message name="ParseMICR27Response">
+    <part name="CheckNbr" type="xs:string" />
+    <part name="RTN" type="xs:string" />
+    <part name="AcctNbr" type="xs:string" />
+  </message>
+  <message name="ReverseCheckImages28Request">
+    <part name="WorkstationID" type="xs:int" />
+    <part name="CheckID" type="xs:int" />
+  </message>
+  <message name="ReverseCheckImages28Response" />
+  <message name="AuthenticateUser29Request">
+    <part name="VendorID" type="xs:string" />
+  </message>
+  <message name="AuthenticateUser29Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <portType name="ICheckService">
+    <operation name="AuthorizeCheck">
+      <input message="tns:AuthorizeCheck0Request" />
+      <output message="tns:AuthorizeCheck0Response" />
+    </operation>
+    <operation name="CreateCustomerID">
+      <input message="tns:CreateCustomerID1Request" />
+      <output message="tns:CreateCustomerID1Response" />
+    </operation>
+    <operation name="CreateTransactionNumber">
+      <input message="tns:CreateTransactionNumber2Request" />
+      <output message="tns:CreateTransactionNumber2Response" />
+    </operation>
+    <operation name="SaveCustomerData">
+      <input message="tns:SaveCustomerData3Request" />
+      <output message="tns:SaveCustomerData3Response" />
+    </operation>
+    <operation name="SaveJournalData">
+      <input message="tns:SaveJournalData4Request" />
+      <output message="tns:SaveJournalData4Response" />
+    </operation>
+    <operation name="GetLanguageArray">
+      <input message="tns:GetLanguageArray5Request" />
+      <output message="tns:GetLanguageArray5Response" />
+    </operation>
+    <operation name="GetLanguageArrayStr">
+      <input message="tns:GetLanguageArrayStr6Request" />
+      <output message="tns:GetLanguageArrayStr6Response" />
+    </operation>
+    <operation name="CaptureRegIDData">
+      <input message="tns:CaptureRegIDData7Request" />
+      <output message="tns:CaptureRegIDData7Response" />
+    </operation>
+    <operation name="CaptureRegIDImage">
+      <input message="tns:CaptureRegIDImage8Request" />
+      <output message="tns:CaptureRegIDImage8Response" />
+    </operation>
+    <operation name="CaptureRegIDDataAndImg">
+      <input message="tns:CaptureRegIDDataAndImg9Request" />
+      <output message="tns:CaptureRegIDDataAndImg9Response" />
+    </operation>
+    <operation name="CaptureRegCustImage">
+      <input message="tns:CaptureRegCustImage10Request" />
+      <output message="tns:CaptureRegCustImage10Response" />
+    </operation>
+    <operation name="PostAndCheckEZCashQ">
+      <input message="tns:PostAndCheckEZCashQ11Request" />
+      <output message="tns:PostAndCheckEZCashQ11Response" />
+    </operation>
+    <operation name="CopyImage">
+      <input message="tns:CopyImage12Request" />
+      <output message="tns:CopyImage12Response" />
+    </operation>
+    <operation name="CaptureCustImage">
+      <input message="tns:CaptureCustImage13Request" />
+      <output message="tns:CaptureCustImage13Response" />
+    </operation>
+    <operation name="CaptureCustIDImage">
+      <input message="tns:CaptureCustIDImage14Request" />
+      <output message="tns:CaptureCustIDImage14Response" />
+    </operation>
+    <operation name="CaptureCustTxnImage">
+      <input message="tns:CaptureCustTxnImage15Request" />
+      <output message="tns:CaptureCustTxnImage15Response" />
+    </operation>
+    <operation name="GetBarcode">
+      <input message="tns:GetBarcode16Request" />
+      <output message="tns:GetBarcode16Response" />
+    </operation>
+    <operation name="GetFee">
+      <input message="tns:GetFee17Request" />
+      <output message="tns:GetFee17Response" />
+    </operation>
+    <operation name="IsCustomer">
+      <input message="tns:IsCustomer18Request" />
+      <output message="tns:IsCustomer18Response" />
+    </operation>
+    <operation name="LoadEquinoxScreen">
+      <input message="tns:LoadEquinoxScreen19Request" />
+      <output message="tns:LoadEquinoxScreen19Response" />
+    </operation>
+    <operation name="CheckScannerCmd">
+      <input message="tns:CheckScannerCmd20Request" />
+      <output message="tns:CheckScannerCmd20Response" />
+    </operation>
+    <operation name="ScanBillStub">
+      <input message="tns:ScanBillStub21Request" />
+      <output message="tns:ScanBillStub21Response" />
+    </operation>
+    <operation name="NCRCheckReview">
+      <input message="tns:NCRCheckReview22Request" />
+      <output message="tns:NCRCheckReview22Response" />
+    </operation>
+    <operation name="NCRCheckVerification">
+      <input message="tns:NCRCheckVerification23Request" />
+      <output message="tns:NCRCheckVerification23Response" />
+    </operation>
+    <operation name="LogBackoutEvent">
+      <input message="tns:LogBackoutEvent24Request" />
+      <output message="tns:LogBackoutEvent24Response" />
+    </operation>
+    <operation name="ProcessBackoutEvents">
+      <input message="tns:ProcessBackoutEvents25Request" />
+      <output message="tns:ProcessBackoutEvents25Response" />
+    </operation>
+    <operation name="Trace">
+      <input message="tns:Trace26Request" />
+      <output message="tns:Trace26Response" />
+    </operation>
+    <operation name="ParseMICR">
+      <input message="tns:ParseMICR27Request" />
+      <output message="tns:ParseMICR27Response" />
+    </operation>
+    <operation name="ReverseCheckImages">
+      <input message="tns:ReverseCheckImages28Request" />
+      <output message="tns:ReverseCheckImages28Response" />
+    </operation>
+    <operation name="AuthenticateUser">
+      <input message="tns:AuthenticateUser29Request" />
+      <output message="tns:AuthenticateUser29Response" />
+    </operation>
+  </portType>
+  <binding name="ICheckServicebinding" type="tns:ICheckService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="AuthorizeCheck">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#AuthorizeCheck" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CreateCustomerID">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CreateCustomerID" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CreateTransactionNumber">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CreateTransactionNumber" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="SaveCustomerData">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#SaveCustomerData" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="SaveJournalData">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#SaveJournalData" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetLanguageArray">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#GetLanguageArray" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetLanguageArrayStr">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#GetLanguageArrayStr" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CaptureRegIDData">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CaptureRegIDData" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CaptureRegIDImage">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CaptureRegIDImage" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CaptureRegIDDataAndImg">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CaptureRegIDDataAndImg" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CaptureRegCustImage">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CaptureRegCustImage" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="PostAndCheckEZCashQ">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#PostAndCheckEZCashQ" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CopyImage">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CopyImage" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CaptureCustImage">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CaptureCustImage" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CaptureCustIDImage">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CaptureCustIDImage" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CaptureCustTxnImage">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CaptureCustTxnImage" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetBarcode">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#GetBarcode" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetFee">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#GetFee" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="IsCustomer">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#IsCustomer" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="LoadEquinoxScreen">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#LoadEquinoxScreen" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CheckScannerCmd">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#CheckScannerCmd" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ScanBillStub">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#ScanBillStub" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="NCRCheckReview">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#NCRCheckReview" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="NCRCheckVerification">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#NCRCheckVerification" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="LogBackoutEvent">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#LogBackoutEvent" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ProcessBackoutEvents">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#ProcessBackoutEvents" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Trace">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#Trace" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ParseMICR">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#ParseMICR" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ReverseCheckImages">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#ReverseCheckImages" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="AuthenticateUser">
+      <soap:operation soapAction="urn:CheckServiceIntf-ICheckService#AuthenticateUser" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CheckServiceIntf-ICheckService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ICheckServiceservice">
+    <port name="ICheckServicePort" binding="tns:ICheckServicebinding">
+      <soap:address location="http://fldevez/checkservice/checkservice.dll/soap/ICheckService" />
+    </port>
+  </service>
+</definitions>

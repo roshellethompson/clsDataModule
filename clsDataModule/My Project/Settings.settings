@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="clsDataModule_CheckServices_CheckServices" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/webcardmanagement/checkservices.asmx</Value>
+    </Setting>
+    <Setting Name="clsDataModule_ICheckService_ICheckServiceservice" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://fldevez/checkservice/checkservice.dll/soap/ICheckService</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
