@@ -2370,6 +2370,12 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
                     oAcct.oTran.Fee = oIFXRow(oIFXCol) / 100
                 ElseIf oIFXCol.caption = "tranID" Then
                     oAcct.oTran.TranID = oIFXRow(oIFXCol)
+                ElseIf oIFXCol.Caption = "custisdest" Then
+                    If IsDBNull(oIFXRow(oIFXCol)) Then
+                        oAcct.oTran.CustIsDest = 0
+                    Else
+                        oAcct.oTran.CustIsDest = oIFXRow(oIFXCol)
+                    End If
                 End If
                 If (balance1 > 0 And balance2 > 0) Then
                     If (oAcct.oTran.tran_type = "CHK") Then
@@ -2383,8 +2389,6 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
             If (oAcct.oTran.Amount = 0) Then
                 oAcct.oTran.Amount = oAcct.oTran.AmountReq
             End If
-
-
 
             Dim myAcct As New clsAccount
             If (bAcct1Dep And iBlockID = oAcct.oTran.BlockId) Then
@@ -2404,6 +2408,7 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
                 fundRow.reg_e = oAcct.oTran.reg_e
                 fundRow.RunBalance = oAcct.cashBalance
                 fundRow.Fee = oAcct.oTran.Fee
+                fundRow.CustIsDest = oAcct.oTran.CustIsDest
                 oBlockDet.oFundAct.Add(fundRow)
             Else
                 arrTrans.Add(oAcct)
@@ -2431,6 +2436,7 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
                     editRow.RunBalance = oEZAcct.cashBalance
                 End If
                 editRow.Fee = oEZAcct.oTran.Fee
+                editRow.CustIsDest = oEZAcct.oTran.CustIsDest
                 oBlockDet.mPaymentsTotal += editRow.cashBalance
                 oBlockDet.mFeeTotal += editRow.Fee
                 oBlockDet.dBlockDate = editRow.date_time
@@ -2602,6 +2608,12 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
                     End If
                 ElseIf oIFXCol.caption = "chp_fee" Then
                     oAcct.oTran.Fee = oIFXRow(oIFXCol) / 100
+                ElseIf oIFXCol.Caption = "custisdest" Then
+                    If IsDBNull(oIFXRow(oIFXCol)) Then
+                        oAcct.oTran.CustIsDest = 0
+                    Else
+                        oAcct.oTran.CustIsDest = oIFXRow(oIFXCol)
+                    End If
                 End If
             Next
             If (oAcct.oTran.Amount = 0) Then
@@ -2627,186 +2639,15 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
                 editRow.Description = Trim(oEZAcct.oTran.Description)
                 editRow.Description2 = Trim(oEZAcct.oTran.Description2)
                 editRow.reg_e = Trim(oEZAcct.oTran.reg_e)
-                'Dim toName As String() = oEZAcct.oTran.Description.Split(" ")
-                'Dim r As Integer = 0
-                'While r < toName.Count
-                '    If (r = 0) Then
-                '        editRow.Description = toName(r)(0).ToString().ToUpper()
-                '        editRow.Description += toName(r).Substring(1, toName(r).Length - 1).ToLower + " "
-                '    Else
-                '        editRow.Description += toName(r)(0).ToString().ToUpper()
-                '        editRow.Description += toName(r).Substring(1, toName(r).Length - 1).ToLower + " "
-                '    End If
-                '    r += 1
-                'End While
-                'editRow.Description = editRow.Description.Trim()
                 editRow.CustID = oEZAcct.CustomerID
                 editRow.ActNbr = oEZAcct.ActNbr
+                editRow.CustIsDest = oEZAcct.oTran.CustIsDest
                 oBlockDet.oHeaderRow.Add(editRow)
             End If
         Next
         Return oBlockDet
     End Function
-    'Public Function GetAllTransactionsbyTranType(ByVal priTranCode As String, ByVal secTranCode As String, ByVal dtFrom As String, ByVal dtTo As String, ByVal iCustID As Integer) As List(Of clsTranRow)
-    '    Dim dt As New DataTable("AllTransactions")
-    '    Dim arrIFXAcct As New ArrayList()
-    '    Dim dsIFX As DataSet
-    '    Dim acctDS As DataSet = GetEZCashDepositAccounts(iCustID)
-
-
-    '    dsIFX = IFX_GetAllTransByCustIDandTranCode(iActID, priTranCode, secTranCode)
-
-
-    '    Dim arrTrans As New ArrayList
-
-    '    For Each oIFXRow In dsIFX.Tables(0).Rows
-    '        Dim oAcct As New clsAccount()
-    '        For Each objRow In acctDS.Tables(0).Rows
-    '            For Each objCol In acctDS.Tables(0).Columns
-    '                If objCol.Caption = "ActNbr" Then
-    '                    oAcct.ActNbr = objRow(objCol)
-    '                ElseIf objCol.Caption = "DepositFlag" Then
-    '                    oAcct.DepositFlag = objRow(objCol)
-    '                ElseIf objCol.Caption = "ButtonText" Then
-    '                    oAcct.ButtonText = objRow(objCol)
-    '                ElseIf objCol.Caption = "ActID" Then
-    '                    oAcct.ActID = objRow(objCol)
-    '                ElseIf objCol.Caption = "CustomerID" Then
-    '                    oAcct.CustomerID = objRow(objCol)
-
-    '                End If
-    '            Next
-    '        Next
-    '        Dim l As Integer = 0
-    '        Dim bAcctmatch As Boolean = False
-    '        Dim bAcct2match As Boolean = False
-    '        Dim oAct1Acct As New clsAccount
-    '        Dim oAct2Acct As New clsAccount
-
-    '        Dim bCustmatch As Boolean = False
-    '        For Each oIFXCol In dsIFX.Tables(0).Columns
-    '            If oIFXCol.Caption = "amount_auth" Then
-    '                oAcct.oTran.Amount = Double.Parse(oIFXRow(oIFXCol) / 100)
-    '            ElseIf oIFXCol.Caption = "pos_batch_nbr" Then
-    '                oAcct.CustomerID = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "tp_datetime" Then
-    '                oAcct.oTran.CreateDate = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "pri_tran_code" Then
-    '                oAcct.oTran.tran_type = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "sec_tran_code" Then
-    '                oAcct.oTran.sec_tran_type = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "acct_1_nbr" Then
-    '                oAcct.oTran.ActNbr = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "acct_2_nbr" Then
-    '                oAcct.oTran.Act2Nbr = oIFXRow(oIFXCol)
-    '                If oAcct.oTran.ActNbr = leftPad(Decrypt(actNbr), 18, "0") Then
-    '                    bAcctmatch = True
-    '                    oAcct.oTran.ActNbr = leftPad(Decrypt(actNbr), 18, "0")
-    '                End If
-    '                If oAcct.oTran.Act2Nbr = leftPad(Decrypt(actNbr), 18, "0") Then
-    '                    bAcct2match = True
-    '                End If
-    '                If bAcctmatch And Not bAcct2match Then
-    '                    If oAcct.CustomerID <> oAct1Acct.CustomerID Then
-    '                        oAcct.ActID = 0
-    '                    End If
-    '                    oAcct.oTran.Amount = -oAcct.oTran.Amount
-    '                Else
-    '                    If oAcct.CustomerID <> oAct2Acct.CustomerID Then
-    '                        oAcct.ActID = 0
-    '                    End If
-    '                End If
-
-    '            ElseIf oIFXCol.Caption = "tranid" Then
-    '                oAcct.oTran.TranID = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "type_code" Then
-    '                oAcct.oTran.tran_status = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "chp_fee" Then
-    '                oAcct.oTran.Fee = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "pos_merch_nbr" Then
-    '                If IsDBNull(oIFXRow(oIFXCol)) Then
-    '                    oAcct.oTran.BlockId = 0
-    '                Else
-    '                    oAcct.oTran.BlockId = oIFXRow(oIFXCol)
-    '                End If
-    '            ElseIf oIFXCol.Caption = "description" Then
-    '                oAcct.oTran.Description = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "transactiontypedescription" Then
-    '                If bAcctmatch Or (Not bAcctmatch And Not bAcct2match) Then
-    '                    If IsDBNull(oIFXRow(oIFXCol)) Then
-    '                    Else
-    '                        oAcct.oTran.TransactionTypeDescription = oIFXRow(oIFXCol)
-    '                    End If
-
-    '                End If
-    '            ElseIf oIFXCol.Caption = "transactiontypedescription2" Then
-    '                If bAcct2match Then
-
-    '                    If IsDBNull(oIFXRow(oIFXCol)) Then
-    '                    Else
-    '                        oAcct.oTran.TransactionTypeDescription = oIFXRow(oIFXCol)
-    '                    End If
-
-    '                End If
-    '            ElseIf oIFXCol.Caption = "acct1icon" Then
-    '                If bAcctmatch Or (Not bAcctmatch And Not bAcct2match) Then
-    '                    If IsDBNull(oIFXRow(oIFXCol)) Then
-    '                    Else
-    '                        oAcct.oTran.TransactionTypeIcon = oIFXRow(oIFXCol)
-    '                    End If
-
-    '                End If
-    '            ElseIf oIFXCol.Caption = "acct2icon" Then
-    '                If bAcct2match Then
-    '                    If IsDBNull(oIFXRow(oIFXCol)) Then
-    '                    Else
-    '                        oAcct.oTran.TransactionTypeIcon = oIFXRow(oIFXCol)
-    '                    End If
-    '                End If
-    '            ElseIf oIFXCol.Caption = "short_desc" Then
-    '                oAcct.short_desc = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "icon" Then
-    '                If IsDBNull(oIFXRow(oIFXCol)) Then
-    '                Else
-    '                    oAcct.AcctIcon = oIFXRow(oIFXCol)
-    '                End If
-    '            ElseIf oIFXCol.Caption = "bal1" Then
-    '                oAcct.cashBalance = oIFXRow(oIFXCol)
-    '            ElseIf oIFXCol.Caption = "chp_fee" Then
-    '                oAcct.oTran.Fee = oIFXRow(oIFXCol) / 100
-    '            End If
-    '        Next
-    '        Dim myAcct As New clsAccount
-    '        If oAcct.oTran.Amount <> 0 Then
-    '            arrTrans.Add(oAcct)
-    '        Else
-    '            Continue For
-    '        End If
-    '        If bAcctmatch Then
-    '            oAcct.oTran.Amount = oAcct.oTran.Amount + myAcct.oTran.Fee
-    '        End If
-    '    Next
-    '    Dim oList As New List(Of clsTranRow)
-    '    For Each oEZAcct As clsAccount In arrTrans
-    '        If oEZAcct.oTran.Amount <> 0 Then
-    '            Dim editRow As New clsTranRow
-    '            editRow.ButtonText = Trim(oEZAcct.ButtonText)
-    '            editRow.StatusIcon = Trim(oEZAcct.AcctIcon)
-    '            editRow.cashBalance = oEZAcct.oTran.Amount
-    '            editRow.RunBalance = oEZAcct.cashBalance
-    '            editRow.date_time = oEZAcct.oTran.CreateDate
-    '            editRow.short_desc = Trim(oEZAcct.short_desc)
-    '            editRow.TransactionTypeIcon = Trim(oEZAcct.oTran.TransactionTypeIcon)
-    '            editRow.TransactionTypeDescription = Trim(oEZAcct.oTran.TransactionTypeDescription)
-    '            editRow.ActID = oEZAcct.ActID
-    '            editRow.TranID = oEZAcct.oTran.TranID
-    '            editRow.BlockID = oEZAcct.oTran.BlockId
-    '            editRow.Description = oEZAcct.oTran.Description
-    '            oList.Add(editRow)
-    '        End If
-    '    Next
-    '    Return oList
-    'End Function
+   
 
 
     Public Function GetAllTransactionsbyAccount(ByVal iActID As Integer, ByVal dtFrom As String, ByVal dtTo As String) As List(Of clsTranRow)
@@ -3263,57 +3104,7 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
                         oAcct.ActNbr = oAct2Acct.ActNbr
                         bAcct2Dep = True
                     End If
-                    'Roshelle 10/3/2014 
-                    'l = 0
-                    'While l < arrAcct.Count
-                    '    Dim oAccount = New clsAccount
-                    '    oAccount = arrAcct(l).Clone(arrAcct(l).oTran)
-                    '    Dim oDecAct As String = leftPad(Decrypt(oAccount.ActNbr), 18, "0")
-                    '    If oAcct.oTran.ActNbr = oDecAct Then
-                    '        bAcctmatch = True
-                    '        oAct1Acct = oAccount.Clone(oAccount.oTran)
-                    '    End If
-                    '    If Int32.Parse(oAcct.oTran.Act2Nbr) = oAccount.ActID Then
-                    '        bAcct2match = True
-                    '        oAct2Acct = oAccount.Clone(oAccount.oTran)
-
-                    '    ElseIf oAcct.oTran.Act2Nbr = leftPad(Decrypt(oAccount.ActNbr), 18, "0") Then
-                    '        If oAccount.DepositFlag Then
-                    '            bAcct2Dep = True
-                    '        End If
-                    '        bAcct2match = True
-                    '        oAct2Acct = oAccount.Clone(oAccount.oTran)
-
-                    '    End If
-                    '    l += 1
-                    'End While
-
-                    'If bAcctmatch And Not bAcct2match Then
-                    '    oAcct.ButtonText = oAct1Acct.ButtonText
-                    '    oAcct.ActID = oAct1Acct.ActID
-                    '    oAcct.DepositFlag = oAct1Acct.DepositFlag
-                    '    If oAcct.CustomerID <> oAct1Acct.CustomerID Then
-                    '        oAcct.ActID = 0
-                    '    End If
-                    '    oAcct.ActNbr = oAct1Acct.ActNbr
-                    '    oAcct.oTran.Amount = -oAcct.oTran.Amount
-                    'ElseIf bAcct2match Then
-                    '    oAcct.ActNbr = oAct2Acct.ActNbr
-                    '    oAcct.ButtonText = oAct2Acct.ButtonText
-                    '    oAcct.ActID = oAct2Acct.ActID
-                    '    oAcct.DepositFlag = oAct2Acct.DepositFlag
-                    '    If oAct2Acct.DepositFlag Then
-                    '        oAcct.ActID = 0
-                    '    End If
-                    'Else
-                    '    oAcct.ButtonText = oAct2Acct.ButtonText
-                    '    oAcct.ActID = oAct2Acct.ActID
-                    '    oAcct.DepositFlag = oAct2Acct.DepositFlag
-                    '    If oAcct.CustomerID <> oAct2Acct.CustomerID Then
-                    '        oAcct.ActID = 0
-                    '    End If
-                    '    oAcct.ActNbr = oAct2Acct.ActNbr
-                    'End If
+                    
 
                 ElseIf oIFXCol.Caption = "tranid" Then
                     If IsDBNull(oIFXRow(oIFXCol)) Then
@@ -3436,23 +3227,7 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
                 editRow.TranID = oEZAcct.oTran.TranID
                 editRow.BlockID = oEZAcct.oTran.BlockId
                 editRow.custisdest = oEZAcct.IsCustDest
-                'If oEZAcct.oTran.Description <> "" Then
-                '    editRow.Description = oEZAcct.oTran.Description(0).ToString().ToUpper()
-                '    Dim toName As String() = oEZAcct.oTran.Description.Split(" ")
-                '    Dim r As Integer = 0
-                '    While r < toName.Count
-                '        If (r = 0) Then
-                '            editRow.Description = toName(r)(0).ToString().ToUpper()
-                '            editRow.Description += toName(r).Substring(1, toName(r).Length - 1).ToLower + " "
-                '        Else
-                '            If toName(r)(0).ToString() <> "" Then
-                '                editRow.Description += toName(r)(0).ToString().ToUpper()
-                '                editRow.Description += toName(r).Substring(1, toName(r).Length - 1).ToLower + " "
-                '            End If
-                '        End If
-                '        r += 1
-                '    End While
-                'End If
+               
                 editRow.Description = oEZAcct.oTran.Description.Trim()
                 editRow.Description2 = oEZAcct.oTran.Description2.Trim()
                 editRow.reg_e = oEZAcct.oTran.reg_e.Trim()
@@ -3796,7 +3571,8 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
         End If
 
         strSQL += " order by tran_datetime desc"
-        
+        'oChkService.Trace(strSQL)
+
         Dim sqlCmd As New IfxCommand(strSQL, oConn.ifxConn)
         sqlCmd.CommandType = CommandType.Text
         Dim da As New IfxDataAdapter

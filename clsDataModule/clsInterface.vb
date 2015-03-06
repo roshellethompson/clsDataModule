@@ -620,7 +620,6 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
             End If
 
             If (bLetter) Then
-
                 oData.SavePrintRecord(strMsg, 0, iCustID)
             End If
 
@@ -665,7 +664,6 @@ ByVal SSN As String, ByVal Sex As String, ByVal TransactionType As String, ByVal
             Return root
         End Try
     End Function
-
 
     Public Function BuildCustomerMessage(ByVal strSegs As clsLabel(), ByVal iLangCode As String) As String
         Dim strRet As String = ""
